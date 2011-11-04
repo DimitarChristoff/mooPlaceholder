@@ -39,7 +39,7 @@ provides: mooPlaceholder
 
         initialize: function(options) {
             this.setOptions(options);
-            this.nativeSupport = !!'placeholder' in document.createElement('input');
+            this.nativeSupport = 'placeholder' in document.createElement('input');
         },
 
         attachToElements: function(selector) {
@@ -51,6 +51,8 @@ provides: mooPlaceholder
                     this.attachEvents(el);
                 }, this);
             }
+
+            return this;
         }, // end attachToElements
 
         detachFromElements: function() {
@@ -66,6 +68,7 @@ provides: mooPlaceholder
                 el.removeEvents(el.retrieve("bound")).eliminate("bound");
             });
 
+            return this;
         },
 
         attachEvents: function(el, placeholder) {
@@ -74,6 +77,7 @@ provides: mooPlaceholder
             if (this.nativeSupport || !document.id(el) || !placeholder || !placeholder.length)
                 return;
 
+            console.log("attaching. what!");
             var hasValue = !!el.get("value").length;
 
             if (!hasValue)

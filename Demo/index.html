@@ -15,12 +15,16 @@
 </head>
 <body>
 <div>
+    <h1>These fields should have a placeholder in every browser</h1>
     <form id="myform" action="#" method="get">
-        <input id="foo" name="foo" placeholder="gay" class="foo" />
-        <input id="foo2" name="foo2" placeholder="bar" class="foo" />
+        <input id="foo" name="foo" placeholder="DD/MM/YY" class="foo" />
+        <input id="foo2" name="foo2" placeholder="foo@bar.com" class="foo" />
+        <br />
+        <input type="submit" value="validate test" />
     </form>
 </div>
 <div>
+    <h1>Add or remove func anytime you want</h1>
     <button id="remove">remove</button> <button id="attach">attach</button>
 </div>
 
@@ -46,6 +50,9 @@
                 return el.trim() === '';
             });
 
+            console.log(hasEmptyFields)
+            e.stop();
+
             // if it has failed, restore it and stop submit
             if (hasEmptyFields) {
                 // restore placeholder values
@@ -58,7 +65,7 @@
                 alert("submitting the form");
             }
 
-        });
+        }).reset();
 
     });
 </script>
