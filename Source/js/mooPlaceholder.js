@@ -26,7 +26,6 @@ provides: mooPlaceholder
 
     var mooPlaceholder = this.mooPlaceholder = new Class({
         // behaviour for default values of inputs class
-
         Implements: [Options],
 
         options: {
@@ -51,7 +50,6 @@ provides: mooPlaceholder
                     this.attachEvents(el);
                 }, this);
             }
-
             return this;
         }, // end attachToElements
 
@@ -65,9 +63,8 @@ provides: mooPlaceholder
                 if (el.get("value") == el.get("placeholder")) {
                     el.set("value", "").removeClass(className);
                 }
-                el.removeEvents(el.retrieve("bound")).eliminate("bound");
+                el.removeEvents(el.retrieve("bound"));
             });
-
             return this;
         },
 
@@ -77,7 +74,6 @@ provides: mooPlaceholder
             if (this.nativeSupport || !document.id(el) || !placeholder || !placeholder.length)
                 return;
 
-            console.log("attaching. what!");
             var hasValue = !!el.get("value").length;
 
             if (!hasValue)
@@ -97,6 +93,7 @@ provides: mooPlaceholder
             };
 
             el.addEvents(boundEvents).store("bound", boundEvents);
+            return this;
         },
 
         change: function(el) {
@@ -106,13 +103,13 @@ provides: mooPlaceholder
                 // once it changes, remove this check and remove the unmoddedClass
                 el.removeClass(this.options.unmoddedClass).removeEvents("change");
             }
-
         },
 
         focus: function(el) {
             var value = el.get("value").trim(), placeholder = el.retrieve("placeholder");
+            el.removeClass(this.options.unmoddedClass);
             if (value == placeholder) {
-                el.set("value", "").removeClass(this.options.unmoddedClass);
+                el.set("value", "");
             }
         },
 
@@ -124,5 +121,6 @@ provides: mooPlaceholder
         }
 
     });
+
 
 })();
